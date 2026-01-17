@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+override_dh_auto_configure:
+	dh_auto_configure
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' \
+		debian/p11-kit-trust.postrm.in > debian/p11-kit-trust.postrm
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' \
+		debian/p11-kit-trust.preinst.in > debian/p11-kit-trust.preinst
+
+override_dh_link:
+	dh_link -p p11-kit-trust \
+		/usr/lib/$(DEB_HOST_MULTIARCH)/pkcs11/p11-kit-trust.so \
+		/usr/lib/$(DEB_HOST_MULTIARCH)/libnssckbi.so
+	dh_link
+
+
+
+override_dh_missing:
+	dh_missing --list-missing
+
+%:
+	dh $@

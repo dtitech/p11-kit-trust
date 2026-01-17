@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = install ] || [ "$1" = upgrade ] ; then
+	divertedby="$(dpkg-divert --listpackage \
+		/usr/lib/@DEB_HOST_MULTIARCH@/libnssckbi.so)"
+	if [ -n "${divertedby}" ] && \
+		[ "${divertedby}" \
+		!= "p11-kit-trust" ] ; then
+		printf '/usr/lib/@DEB_HOST_MULTIARCH@/libnssckbi.so is locally diverted.\nCannot configure p11-kit-trust.\n' 1>&2
+		exit 1
+	fi
+
+	dpkg-divert --add --package p11-kit-trust --rename \
+		--divert \
+		/usr/lib/@DEB_HOST_MULTIARCH@/libnssckbi.so_libnss3 \
+		/usr/lib/@DEB_HOST_MULTIARCH@/libnssckbi.so
+fi
+
+#DEBHELPER#

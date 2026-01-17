@@ -1,0 +1,5 @@
+p11-kit-trust (0.1.0) stable; urgency=medium
+
+  * Initial version
+
+ -- Tomas Kyzlink <tkyzlink@dtitech.cz>  Sat, 17 Jan 2026 12:23:11 +0100

@@ -1,0 +1,2 @@
+debian/p11-kit-trust.postrm
+debian/p11-kit-trust.preinst

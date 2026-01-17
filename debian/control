@@ -1,0 +1,29 @@
+Source: p11-kit-trust
+Priority: optional
+Maintainer: Tomas Kyzlink <tkyzlink@dtitech.cz>
+Uploaders: Tomas Kyzlink <tkyzlink@dtitech.cz>
+Build-Depends:
+ debhelper-compat (= 13),
+ pkg-config
+Standards-Version: 4.5.1
+Rules-Requires-Root: no
+Section: libs
+Vcs-Git: https://salsa.debian.org/gnutls-team/p11-kit.git
+Vcs-Browser: https://salsa.debian.org/gnutls-team/p11-kit
+Homepage: https://p11-glue.github.io/p11-glue/p11-kit.html
+
+Package: p11-kit-trust
+Section: misc
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends}
+Pre-Depends:
+ p11-kit-modules,
+ libnss3
+Enhances:
+ libnss3
+Description: use Debian CA trust-store for NSS
+ By default NSS based software uses the Mozilla CA Certificate Store to
+ determine the authenticity of X.509 certificates. This package makes NSS
+ use the certificates from the ca-certificates package instead.

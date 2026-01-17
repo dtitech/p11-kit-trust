@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = remove ] ; then
+	dpkg-divert --remove --package p11-kit-trust --rename \
+		--divert \
+		/usr/lib/@DEB_HOST_MULTIARCH@/libnssckbi.so_libnss3 \
+		/usr/lib/@DEB_HOST_MULTIARCH@/libnssckbi.so
+fi
+
+#DEBHELPER#
