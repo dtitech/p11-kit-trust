@@ -8,9 +8,8 @@ Build-Depends:
 Standards-Version: 4.5.1
 Rules-Requires-Root: no
 Section: libs
-Vcs-Git: https://salsa.debian.org/gnutls-team/p11-kit.git
-Vcs-Browser: https://salsa.debian.org/gnutls-team/p11-kit
-Homepage: https://p11-glue.github.io/p11-glue/p11-kit.html
+Vcs-Git: https://github.com/dtitech/p11-kit-trust.git
+Vcs-Browser: https://github.com/dtitech/p11-kit-trust
 
 Package: p11-kit-trust
 Section: misc
